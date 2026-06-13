@@ -1,0 +1,11 @@
+streamlit
+pypdf
+pandas
+numpy
+scikit-learn
+plotly
+openai
+pyngrok
+python-docx
+pinecone
+sentence-transformers
