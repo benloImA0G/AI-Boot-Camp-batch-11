@@ -35,17 +35,45 @@
 
 ## 📸 Screenshots
 
-### Colab Notebook Running
+### 1. Colab Startup — App Goes Live
 ![Colab running](screenshots/screenshot-1-colab-running.jpg)
-*App startup in Google Colab — all API keys loaded, ngrok tunnel live*
+*All API keys loaded, Streamlit started, ngrok tunnel printed in seconds*
 
-### Landing Page
+### 2. Landing Page
 ![Landing page](screenshots/screenshot-2-landing-page.jpg)
-*ResumeFit AI v5.0 dashboard — Groq AI ON, Pinecone ACTIVE, ready to analyze*
+*ResumeFit AI v5.0 — Groq AI ON, Pinecone ACTIVE, Hybrid Scoring Formula visible in sidebar*
 
-### Upload CV & Job Description
+### 3. Upload CV & Paste Job Description
 ![Upload and analyze](screenshots/screenshot-3-upload-analyze.jpg)
-*Step 1: Upload CV PDF and paste job description before running Hybrid AI analysis*
+*Step 1: Upload a CV PDF and paste the full job description, then click Analyze*
+
+### 4. Dashboard — ATS Score & Skill Radar
+![Dashboard score](screenshots/screenshot-4-dashboard-score.jpg)
+*ATS Match Score gauge, Skill Radar chart (Job Req vs. Your CV), and per-layer sub-scores*
+
+### 5. Dashboard — 4-Layer Scoring Breakdown & Missing Skills
+![Dashboard breakdown](screenshots/screenshot-5-dashboard-breakdown.jpg)
+*Bar chart showing TF-IDF / Pinecone / Keyword / Skill weights, plus prioritized missing skill list*
+
+### 6. 12-Aspect CV Analysis
+![12-Aspect analysis](screenshots/screenshot-6-12-aspects.jpg)
+*LLM-powered breakdown across 12 quality dimensions — each scored and flagged as Strong / Average / Weak*
+
+### 7. AI-Optimized CV — Side-by-Side Rewrite
+![AI rewrite](screenshots/screenshot-7-ai-rewrite.jpg)
+*Original CV excerpt (left) vs. AI-optimized version (right) — Enhancement Mode active for low-match CVs*
+
+### 8. AI Rewrite Output — Summary, Achievements & Keywords
+![AI rewrite output](screenshots/screenshot-8-ai-rewrite-output.jpg)
+*Rewritten Professional Summary, Top 5 Achievement Bullets, Keywords to Add, and Career Recommendation*
+
+### 9. Impact Language & ATS Formatting Check
+![Impact and format](screenshots/screenshot-9-impact-format.jpg)
+*Weak phrases detected, ATS formatting score, image/layout warnings, and contact info check*
+
+### 10. Export
+![Export](screenshots/screenshot-10-export.jpg)
+*Download full optimized CV report as .docx or .txt*
 
 ---
 
@@ -279,10 +307,17 @@ AI-Boot-Camp-batch-11/
 ├── requirements.txt                   # Python dependencies
 ├── ResumeFit-AI Final.pdf            # Final presentation slides
 ├── README.md                          # This file
-├── screenshots/                       # App screenshots
+├── screenshots/                       # App screenshots (full walkthrough)
 │   ├── screenshot-1-colab-running.jpg
 │   ├── screenshot-2-landing-page.jpg
-│   └── screenshot-3-upload-analyze.jpg
+│   ├── screenshot-3-upload-analyze.jpg
+│   ├── screenshot-4-dashboard-score.jpg
+│   ├── screenshot-5-dashboard-breakdown.jpg
+│   ├── screenshot-6-12-aspects.jpg
+│   ├── screenshot-7-ai-rewrite.jpg
+│   ├── screenshot-8-ai-rewrite-output.jpg
+│   ├── screenshot-9-impact-format.jpg
+│   └── screenshot-10-export.jpg
 └── Contoh Resumes/                    # Sample CVs for testing
     ├── Assistant Marketing Manager Resume.pdf
     ├── Product Marketing Manager Resume.pdf
