@@ -163,6 +163,10 @@ Most job seekers send generic CVs without knowing which keywords are missing, wh
 
 ResumeFit AI uses **Pinecone** as its vector database to enable semantic (meaning-based) matching between a CV and a job description — going beyond keyword overlap to understand conceptual similarity.
 
+### What is an Embedding?
+
+An embedding is a list of numbers (a vector) that represents the **meaning** of a text. Words and sentences with similar meanings produce vectors that point in similar directions in high-dimensional space. Cosine similarity then measures the angle between two vectors — the smaller the angle, the more semantically similar the two texts are. This allows ResumeFit AI to recognize that "led a team" and "managed a group" are conceptually the same, even though they share no keywords.
+
 ### How It Works — Step by Step
 
 ```
