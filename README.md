@@ -98,7 +98,7 @@
 
 ## 📌 Overview
 
-**ResumeFit AI** is an end-to-end AI application that helps job seekers understand exactly why their CV isn't passing ATS (Applicant Tracking System) filters — and gives them actionable steps to fix it.
+**ResumeFit AI** is an end-to-end AI application that helps job seekers optimize their CV and measure how well it matches any job description. It pinpoints exactly why a CV isn't passing ATS (Applicant Tracking System) filters — the automated software companies use to screen applications before a human ever reads them — and delivers actionable steps to fix it.
 
 Most job seekers send generic CVs without knowing which keywords are missing, which skills are misaligned, or why the wording isn't landing. ResumeFit AI solves this with a **4-layer hybrid AI scoring engine** that combines statistical NLP, semantic vector search, and generative AI into a single, easy-to-use app.
 
