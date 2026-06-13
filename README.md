@@ -1,4 +1,4 @@
-# 🚀 ResumeFit AI
+# 🚀 ResumeFit AI v5.0 Final
 ### ATS Matching & CV Optimization System
 
 > **Final Project — Ruangguru AI Engineering Bootcamp Batch 11**
@@ -8,6 +8,8 @@
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.x-red?logo=streamlit)
 ![Pinecone](https://img.shields.io/badge/Pinecone-Vector%20DB-green)
 ![Groq](https://img.shields.io/badge/Groq-LLM-orange)
+![Version](https://img.shields.io/badge/Version-v5.0%20Final-brightgreen)
+![Status](https://img.shields.io/badge/Status-Completed-success)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1EeoavttYTLHriAmGEL8YgnXIXiMoUKqn)
 
@@ -357,6 +359,7 @@ Building ResumeFit AI end-to-end surfaced several real-world AI engineering chal
 
 **Bernard Lokasasmita**
 Final Project — Ruangguru AI Engineering Bootcamp Batch 11
+Completed: June 13, 2026
 
 > *"AI yang baik bukan hanya yang akurat di notebook — tetapi yang bisa memberi nilai nyata kepada pengguna akhir."*
 > ("Good AI is not just accurate in a notebook — it must deliver real value to end users.")
