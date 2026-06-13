@@ -1,5 +1,5 @@
 # 🚀 ResumeFit AI v5.0 Final
-### ATS Matching & CV Optimization System
+### ATS (Applicant Tracking System) Matching & CV Optimization System
 
 > **Final Project — Ruangguru AI Engineering Bootcamp Batch 11**
 > Bernard Lokasasmita
