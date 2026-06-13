@@ -9,6 +9,26 @@
 ![Pinecone](https://img.shields.io/badge/Pinecone-Vector%20DB-green)
 ![Groq](https://img.shields.io/badge/Groq-LLM-orange)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/benloImA0G/AI-Boot-Camp-batch-11/blob/main/ResumeFit%20AI%20Bernard%20L%20v1.ipynb)
+
+---
+
+## 📋 Table of Contents
+
+- [Live Demo](#-live-demo)
+- [Overview](#-overview)
+- [Features](#-features)
+- [System Architecture](#-system-architecture)
+- [Scoring Formula](#-scoring-formula)
+- [Tech Stack](#-tech-stack)
+- [Quick Start](#-quick-start-google-colab)
+- [How to Use](#-how-to-use)
+- [12 CV Evaluation Aspects](#-12-cv-evaluation-aspects)
+- [Impact Language & ATS Format Checks](#-impact-language--ats-format-checks)
+- [Challenges & Learnings](#-challenges--learnings)
+- [Project Structure](#-project-structure)
+- [Future Roadmap](#-future-roadmap)
+- [Author](#-author)
 
 ---
 
@@ -240,7 +260,7 @@ AI-Boot-Camp-batch-11/
 ├── app.py                             # Streamlit app source code
 ├── colab_runner.py                    # Colab launcher script (Cell 2)
 ├── requirements.txt                   # Python dependencies
-├── ResumeFit-Final.pdf               # Final presentation slides
+├── ResumeFit-AI Final.pdf            # Final presentation slides
 ├── README.md                          # This file
 └── Contoh Resumes/                    # Sample CVs for testing
     ├── Assistant Marketing Manager Resume.pdf
@@ -249,6 +269,20 @@ AI-Boot-Camp-batch-11/
     ├── Job Title_ Senior Backend Software Engineer.docx
     └── Senior Backend Software Engineer.docx
 ```
+
+---
+
+## 🧗 Challenges & Learnings
+
+Building ResumeFit AI end-to-end surfaced several real-world AI engineering challenges:
+
+| # | Challenge | Solution | Learning |
+|---|---|---|---|
+| 1 | **Pinecone cold-start latency** — vector ingestion caused noticeable delays with no user feedback | Added real-time spinners and status messages during each ingestion step | User feedback during processing matters as much as final accuracy |
+| 2 | **Inconsistent LLM output formatting** — Groq responses often broke the parser with unexpected structures | Strict prompt engineering with exact labeled output templates (`ASPECT:`, `SCORE:`, `TIP:`) | Structured prompts with explicit field names dramatically improve parsing reliability |
+| 3 | **Image-based PDF parsing failures** — many real CVs use graphics, icons, and photo headers that PyPDF cannot extract | Built a dedicated ATS format checker that detects and warns users about image-heavy CVs before scoring | Detection of bad inputs is as valuable as the scoring itself |
+| 4 | **Low-match CV force-fitting** — early versions tried to tailor every CV to the job regardless of match quality, producing dishonest rewrites | Implemented a dual strategy: tailor CV if score ≥60%, enhance overall quality if <60% without forcing the fit | AI should be honest with users, not just compliant with their requests |
+| 5 | **Groq free-tier rate limits** — LLM calls occasionally hit rate limits mid-analysis, breaking the pipeline | Built a complete rule-based fallback engine that activates automatically when the LLM is unavailable | Every AI feature in a production app needs a reliable non-AI fallback |
 
 ---
 
