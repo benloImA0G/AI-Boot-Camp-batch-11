@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ResumeFit AI — README</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #24292e;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 48px;
+    background: #fff;
+  }
+  h1 { font-size: 2em; border-bottom: 2px solid #e1e4e8; padding-bottom: 12px; margin: 24px 0 16px; color: #1a1a2e; }
+  h2 { font-size: 1.5em; border-bottom: 1px solid #e1e4e8; padding-bottom: 8px; margin: 32px 0 14px; color: #1a1a2e; }
+  h3 { font-size: 1.15em; margin: 24px 0 10px; color: #24292e; }
+  h4 { font-size: 1em; margin: 16px 0 8px; }
+  p { margin: 10px 0; }
+  a { color: #0366d6; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  hr { border: none; border-top: 2px solid #e1e4e8; margin: 28px 0; }
+  blockquote {
+    border-left: 4px solid #6f42c1;
+    background: #f8f4ff;
+    padding: 12px 16px;
+    margin: 12px 0;
+    border-radius: 0 6px 6px 0;
+    color: #444;
+  }
+  blockquote p { margin: 4px 0; }
+  code {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 85%;
+    background: #f3f0ff;
+    color: #6f42c1;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  pre {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    padding: 16px 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 14px 0;
+    font-size: 12.5px;
+    line-height: 1.6;
+  }
+  pre code { background: none; color: inherit; padding: 0; font-size: inherit; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 13.5px;
+  }
+  th {
+    background: #6f42c1;
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid #e1e4e8; vertical-align: top; }
+  tr:nth-child(even) td { background: #f8f4ff; }
+  tr:hover td { background: #ede9ff; }
+  img {
+    max-width: 100%;
+    border-radius: 8px;
+    border: 1px solid #e1e4e8;
+    margin: 10px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  em { color: #586069; font-style: italic; }
+  strong { font-weight: 700; color: #1a1a2e; }
+  ul, ol { padding-left: 24px; margin: 10px 0; }
+  li { margin: 4px 0; }
+  .header-block {
+    background: linear-gradient(135deg, #1a1a2e 0%, #6f42c1 100%);
+    color: white;
+    padding: 32px 36px;
+    border-radius: 12px;
+    margin-bottom: 28px;
+  }
+  .header-block h1 { color: white; border: none; margin: 0 0 6px; font-size: 2.2em; }
+  .header-block .subtitle { font-size: 1.1em; opacity: 0.85; margin-top: 4px; }
+  .header-block .meta { font-size: 0.9em; opacity: 0.7; margin-top: 10px; }
+  .badge-row { margin: 14px 0; }
+  .badge-row img { border: none; box-shadow: none; border-radius: 4px; margin: 2px 4px 2px 0; display: inline; }
+  .toc {
+    background: #f8f4ff;
+    border: 1px solid #d8b4fe;
+    border-radius: 8px;
+    padding: 18px 24px;
+    margin: 16px 0;
+  }
+  .toc h2 { border: none; margin: 0 0 10px; font-size: 1em; color: #6f42c1; }
+  .toc ul { margin: 0; padding-left: 20px; }
+  .toc li { margin: 3px 0; font-size: 13px; }
+  .screenshot-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin: 16px 0; }
+  .screenshot-item { break-inside: avoid; }
+  .screenshot-item p { margin: 4px 0 0; font-size: 12.5px; color: #586069; font-style: italic; }
+  .formula-box {
+    background: #1e1e2e;
+    color: #a9dc76;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 1.05em;
+    text-align: center;
+    margin: 14px 0;
+    letter-spacing: 0.3px;
+  }
+  .score-guide {
+    background: #f0fff4;
+    border: 1px solid #86efac;
+    border-radius: 6px;
+    padding: 10px 16px;
+    font-size: 13px;
+    margin: 10px 0;
+  }
+  .author-box {
+    background: linear-gradient(135deg, #f8f4ff, #ede9ff);
+    border: 1px solid #d8b4fe;
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 16px 0;
+    text-align: center;
+  }
+  .author-box h3 { font-size: 1.3em; color: #6f42c1; margin: 0 0 6px; }
+  .author-box .quote { font-style: italic; color: #444; font-size: 13px; margin-top: 12px; line-height: 1.6; }
+  @media print {
+    body { padding: 20px 30px; font-size: 12px; }
+    .screenshot-item { page-break-inside: avoid; }
+    h2 { page-break-after: avoid; }
+    pre { white-space: pre-wrap; word-break: break-all; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header-block">
+  <h1>🚀 ResumeFit AI v5.0 Final</h1>
+  <div class="subtitle">AI-Powered CV Optimizer &amp; Job Match Engine</div>
+  <div class="meta">Final Project — Ruangguru AI Engineering Bootcamp Batch 11 &nbsp;|&nbsp; Bernard Lokasasmita</div>
+</div>
+
+<div class="badge-row">
+  <img src="https://img.shields.io/badge/Python-3.10+-blue?logo=python" alt="Python">
+  <img src="https://img.shields.io/badge/Streamlit-1.x-red?logo=streamlit" alt="Streamlit">
+  <img src="https://img.shields.io/badge/Pinecone-Vector%20DB-green" alt="Pinecone">
+  <img src="https://img.shields.io/badge/Groq-LLM-orange" alt="Groq">
+  <img src="https://img.shields.io/badge/License-MIT-lightgrey" alt="License">
+</div>
+
+<hr>
+
+<div class="toc">
+  <h2>📋 Table of Contents</h2>
+  <ul>
+    <li>Screenshots</li>
+    <li>Live Demo</li>
+    <li>Overview</li>
+    <li>Features</li>
+    <li>System Architecture</li>
+    <li>Scoring Formula</li>
+    <li>Tech Stack</li>
+    <li>Quick Start (Google Colab)</li>
+    <li>How to Use</li>
+    <li>12 CV Evaluation Aspects</li>
+    <li>Impact Language &amp; ATS Format Checks</li>
+    <li>Challenges &amp; Learnings</li>
+    <li>Project Structure</li>
+    <li>Future Roadmap</li>
+    <li>Author</li>
+  </ul>
+</div>
+
+<hr>
+
+<h2>📸 Screenshots</h2>
+
+<div class="screenshot-grid">
+
+  <div class="screenshot-item">
+    <h3>1. Colab Startup — App Goes Live</h3>
+    <img src="screenshots/screenshot-1-colab-running.jpg" alt="Colab running">
+    <p>All API keys loaded, Streamlit started, ngrok tunnel printed in seconds</p>
+  </div>
+
+  <div class="screenshot-item">
+    <h3>2. Landing Page</h3>
+    <img src="screenshots/screenshot-2-landing-page.jpg" alt="Landing page">
+    <p>ResumeFit AI v5.0 — Groq AI ON, Pinecone ACTIVE, Hybrid Scoring Formula visible in sidebar</p>
+  </div>
+
+  <div class="screenshot-item">
+    <h3>3. Upload CV &amp; Paste Job Description</h3>
+    <img src="screenshots/screenshot-3-upload-analyze.jpg" alt="Upload and analyze">
+    <p>Step 1: Upload a CV PDF and paste the full job description, then click Analyze</p>
+  </div>
+
+  <div class="screenshot-item">
+    <h3>4. Dashboard — ATS Score &amp; Skill Radar</h3>
+    <img src="screenshots/screenshot-4-dashboard-score.jpg" alt="Dashboard score">
+    <p>ATS Match Score gauge, Skill Radar chart (Job Req vs. Your CV), and per-layer sub-scores</p>
+  </div>
+
+  <div class="screenshot-item">
+    <h3>5. Dashboard — 4-Layer Scoring Breakdown &amp; Missing Skills</h3>
+    <img src="screenshots/screenshot-5-dashboard-breakdown.jpg" alt="Dashboard breakdown">
+    <p>Bar chart showing TF-IDF / Pinecone / Keyword / Skill weights, plus prioritized missing skill list</p>
+  </div>
+
+  <div class="screenshot-item">
+    <h3>6. 12-Aspect CV Analysis</h3>
+    <img src="screenshots/screenshot-6-12-aspects.jpg" alt="12-Aspect analysis">
+    <p>LLM-powered breakdown across 12 quality dimensions — each scored and flagged as Strong / Average / Weak</p>
+  </div>
+
+  <div class="screenshot-item">
+    <h3>7. AI-Optimized CV — Side-by-Side Rewrite</h3>
+    <img src="screenshots/screenshot-7-ai-rewrite.jpg" alt="AI rewrite">
+    <p>Original CV excerpt (left) vs. AI-optimized version (right) — Enhancement Mode active for low-match CVs</p>
+  </div>
+
+  <div class="screenshot-item">
+    <h3>8. AI Rewrite Output — Summary, Achievements &amp; Keywords</h3>
+    <img src="screenshots/screenshot-8-ai-rewrite-output.jpg" alt="AI rewrite output">
+    <p>Rewritten Professional Summary, Top 5 Achievement Bullets, Keywords to Add, and Career Recommendation</p>
+  </div>
+
+  <div class="screenshot-item">
+    <h3>9. Impact Language &amp; ATS Formatting Check</h3>
+    <img src="screenshots/screenshot-9-impact-format.jpg" alt="Impact and format">
+    <p>Weak phrases detected, ATS formatting score, image/layout warnings, and contact info check</p>
+  </div>
+
+  <div class="screenshot-item">
+    <h3>10. Export</h3>
+    <img src="screenshots/screenshot-10-export.jpg" alt="Export">
+    <p>Download full optimized CV report as .docx or .txt</p>
+  </div>
+
+</div>
+
+<hr>
+
+<h2>🎬 Live Demo</h2>
+
+<blockquote>
+  <p><strong>For Coaches &amp; Reviewers:</strong> The app runs on Google Colab + ngrok (see instructions below).<br>
+  A live demo session was recorded during submission — see <code>ResumeFit-AI Final.pdf</code> for screenshots and the demo URL.</p>
+</blockquote>
+
+<p><strong>To run the demo yourself (takes ~2 minutes):</strong></p>
+<ol>
+  <li>Open <code>ResumeFit AI Bernard L v1.ipynb</code> in Google Colab</li>
+  <li>Add 3 free API keys as Colab Secrets (instructions below)</li>
+  <li>Run both cells → a public URL is printed instantly</li>
+  <li>Click the URL to open the live app in your browser</li>
+</ol>
+<blockquote><p>Sample CVs for testing are included in the <code>Contoh Resumes/</code> folder.</p></blockquote>
+
+<hr>
+
+<h2>📌 Overview</h2>
+
+<p><strong>ResumeFit AI</strong> is an end-to-end AI application that helps job seekers understand exactly why their CV isn't passing ATS (Applicant Tracking System) filters — and gives them actionable steps to fix it.</p>
+<p>Most job seekers send generic CVs without knowing which keywords are missing, which skills are misaligned, or why the wording isn't landing. ResumeFit AI solves this with a <strong>4-layer hybrid AI scoring engine</strong> that combines statistical NLP, semantic vector search, and generative AI into a single, easy-to-use app.</p>
+
+<hr>
+
+<h2>✨ Features</h2>
+
+<table>
+  <tr><th>Feature</th><th>Description</th></tr>
+  <tr><td>🎯 <strong>ATS Match Score</strong></td><td>Overall CV-to-JD compatibility score (0–100%)</td></tr>
+  <tr><td>📊 <strong>4-Layer Hybrid Scoring</strong></td><td>TF-IDF + Pinecone Semantic + Keyword Coverage + Skill Match</td></tr>
+  <tr><td>🗄️ <strong>Vector Database Matching</strong></td><td>Semantic similarity via Pinecone — captures meaning, not just keywords</td></tr>
+  <tr><td>🔍 <strong>12-Aspect CV Evaluation</strong></td><td>LLM-powered deep analysis across 12 quality dimensions</td></tr>
+  <tr><td>⚡ <strong>Impact Language Analysis</strong></td><td>Detects weak verbs, buzzwords, and missing quantified achievements</td></tr>
+  <tr><td>📋 <strong>ATS Formatting Check</strong></td><td>Flags multi-column layouts, images, tables, missing sections</td></tr>
+  <tr><td>🤖 <strong>AI CV Rewrite</strong></td><td>Smart rewrite: tailors CV if match ≥60%, enhances overall quality if &lt;60%</td></tr>
+  <tr><td>📥 <strong>Export</strong></td><td>Download full report as <code>.docx</code> or <code>.txt</code></td></tr>
+</table>
+
+<hr>
+
+<h2>🧠 System Architecture</h2>
+
+<pre>
+┌─────────────────────────────────────────────────────────┐
+│                    ResumeFit AI                          │
+│                                                          │
+│  INPUT                                                   │
+│  ┌──────────┐    ┌──────────────────┐                   │
+│  │ CV (PDF) │    │ Job Description  │                   │
+│  └────┬─────┘    └────────┬─────────┘                   │
+│       │                   │                              │
+│  LAYER 2: Processing      │                              │
+│  ┌────▼─────────────────▼─────────┐                     │
+│  │  PDF Extractor → Text Cleaner  │                     │
+│  │  Skill Extractor → Keywords    │                     │
+│  └──────────────┬─────────────────┘                     │
+│                 │                                        │
+│  LAYER 3: Analysis Engine                                │
+│  ┌──────────────▼─────────────────────────────────┐     │
+│  │  Statistical  │  Semantic    │  Rule-Based      │     │
+│  │  TF-IDF       │  Pinecone    │  Keyword/Skill   │     │
+│  │  Cosine Sim   │  Embeddings  │  Gap Detection   │     │
+│  └──────────┬────┴──────┬───────┴──────────────────┘     │
+│             │  Program  │                                 │
+│             │ Ingestion │ Model Embedding                 │
+│             └────────►  Vector Database (Pinecone)        │
+│                                                          │
+│  LLM Layer (Groq / OpenAI)                              │
+│  ┌─────────────────────────────────────────────────┐    │
+│  │  12-Aspect Evaluation  │  Impact Language        │    │
+│  │  CV Rewrite Suggestion │  Career Recommendation  │    │
+│  └─────────────────────────────────────────────────┘    │
+│                                                          │
+│  LAYER 4: Output                                         │
+│  Dashboard │ 12-Aspect │ AI Rewrite │ Format Check │ Export │
+└─────────────────────────────────────────────────────────┘
+</pre>
+
+<hr>
+
+<h2>📐 Scoring Formula</h2>
+
+<p>ResumeFit AI uses a <strong>weighted hybrid formula</strong> combining 4 layers:</p>
+
+<div class="formula-box">Final Score = 0.4 × TF-IDF &nbsp;+&nbsp; 0.3 × Pinecone &nbsp;+&nbsp; 0.2 × Keywords &nbsp;+&nbsp; 0.1 × Skills</div>
+
+<table>
+  <tr><th>Component</th><th>Weight</th><th>Method</th></tr>
+  <tr><td>TF-IDF Cosine Similarity</td><td>40%</td><td><code>sklearn</code> TfidfVectorizer + cosine similarity</td></tr>
+  <tr><td>Pinecone Semantic Similarity</td><td>30%</td><td><code>sentence-transformers</code> embeddings + Pinecone vector search</td></tr>
+  <tr><td>Keyword Coverage</td><td>20%</td><td>|KJ ∩ KR| / |KJ| × 100</td></tr>
+  <tr><td>Skill Match</td><td>10%</td><td>Rule-based dictionary matching</td></tr>
+</table>
+
+<div class="score-guide">
+  <strong>Score Guide:</strong> 🟢 75–100% Excellent &nbsp;|&nbsp; 🔵 55–75% Good &nbsp;|&nbsp; 🟡 35–55% Moderate &nbsp;|&nbsp; 🔴 0–35% Needs Work
+</div>
+
+<h3>🎯 Why These Weights?</h3>
+<p>The weights were deliberately chosen to <strong>mirror how real-world ATS systems actually work</strong>, not to maximise pure semantic accuracy:</p>
+<ul>
+  <li><strong>TF-IDF at 40%</strong> — Most commercial ATS platforms (Workday, Taleo, Greenhouse) are predominantly keyword-matching engines.</li>
+  <li><strong>TF-IDF + Keyword Coverage = 60% combined</strong> — Reflects the industry reality that ATS screening is still largely keyword-driven.</li>
+  <li><strong>Pinecone Semantic at 30%</strong> — Adds modern NLP intelligence. Captures meaning beyond exact keyword matches.</li>
+  <li><strong>Skill Match at 10%</strong> — Focused signal specifically targeting technical and soft skills that recruiters filter on.</li>
+</ul>
+<blockquote><p>This is a deliberate design decision to simulate ATS behaviour accurately, not a limitation.</p></blockquote>
+
+<hr>
+
+<h2>🏗️ Tech Stack</h2>
+
+<table>
+  <tr><th>Category</th><th>Technology</th></tr>
+  <tr><td><strong>Language</strong></td><td>Python 3.10+</td></tr>
+  <tr><td><strong>UI</strong></td><td>Streamlit</td></tr>
+  <tr><td><strong>Statistical NLP</strong></td><td>Scikit-learn (TF-IDF, Cosine Similarity)</td></tr>
+  <tr><td><strong>Semantic Search</strong></td><td>Sentence-Transformers (<code>all-MiniLM-L6-v2</code>)</td></tr>
+  <tr><td><strong>Vector Database</strong></td><td>Pinecone (Serverless)</td></tr>
+  <tr><td><strong>LLM</strong></td><td>Groq (<code>llama-3.1-8b-instant</code>) — free default</td></tr>
+  <tr><td><strong>LLM (optional)</strong></td><td>OpenAI (<code>gpt-3.5-turbo</code>, <code>gpt-4o-mini</code>, <code>gpt-4o</code>)</td></tr>
+  <tr><td><strong>PDF Extraction</strong></td><td>PyPDF</td></tr>
+  <tr><td><strong>Visualization</strong></td><td>Plotly (gauge, radar, bar charts)</td></tr>
+  <tr><td><strong>Export</strong></td><td>python-docx</td></tr>
+  <tr><td><strong>Deployment</strong></td><td>Google Colab + ngrok</td></tr>
+</table>
+
+<hr>
+
+<h2>🚀 Quick Start (Google Colab)</h2>
+
+<h3>1. Clone / Download</h3>
+<pre><code>git clone https://github.com/benloImA0G/AI-Boot-Camp-batch-11.git</code></pre>
+
+<h3>2. Set Up Secrets in Colab</h3>
+<blockquote><p>All 3 keys are <strong>free</strong>. Sign up takes under 2 minutes each.</p></blockquote>
+<p>In Google Colab → click the 🔑 <strong>Secrets</strong> icon (left sidebar) → add:</p>
+<table>
+  <tr><th>Secret Name</th><th>Where to Get It</th><th>Required?</th></tr>
+  <tr><td><code>NGROK_AUTH_TOKEN</code></td><td>ngrok.com → Sign up → Your Authtoken</td><td>✅ Yes</td></tr>
+  <tr><td><code>GROQ_API_KEY</code></td><td>console.groq.com → API Keys → Create</td><td>✅ Yes (free)</td></tr>
+  <tr><td><code>PINECONE_API_KEY</code></td><td>pinecone.io → Projects → API Keys</td><td>✅ Yes (free)</td></tr>
+</table>
+
+<h3>3. Run the Notebook</h3>
+<ol>
+  <li>Open <code>ResumeFit AI Bernard L v1.ipynb</code> in Google Colab</li>
+  <li>Run <strong>Cell 1</strong> → writes <code>app.py</code> to the Colab environment</li>
+  <li>Run <strong>Cell 2</strong> → installs all dependencies and starts the Streamlit app</li>
+  <li>Copy the printed <strong>ngrok public URL</strong> and open it in your browser</li>
+</ol>
+<blockquote><p>The first run downloads the embedding model (~80MB from HuggingFace). Wait ~60 seconds before opening the URL.</p></blockquote>
+
+<h3>4. Test the App</h3>
+<p>Use the sample CVs included in <code>Contoh Resumes/</code>:</p>
+<ul>
+  <li>Upload any of the 5 sample PDFs as your CV</li>
+  <li>Paste a relevant job description</li>
+  <li>Click <strong>"Analyze My CV — Hybrid AI"</strong></li>
+</ul>
+
+<hr>
+
+<h2>📖 How to Use</h2>
+<ol>
+  <li><strong>Upload your CV</strong> as a PDF file</li>
+  <li><strong>Paste the Job Description</strong> you're applying for</li>
+  <li>Click <strong>"Analyze My CV — Hybrid AI"</strong></li>
+  <li>Explore the 5 tabs:
+    <ul>
+      <li>📊 <strong>Dashboard</strong> — overall scores, skill match, radar chart</li>
+      <li>🔍 <strong>12-Aspect Analysis</strong> — deep breakdown with tips per aspect</li>
+      <li>🤖 <strong>AI-Optimized CV</strong> — rewritten sections tailored to the job</li>
+      <li>⚡ <strong>Impact &amp; Format</strong> — weak verbs, buzzwords, ATS compatibility</li>
+      <li>📥 <strong>Export</strong> — download full report</li>
+    </ul>
+  </li>
+</ol>
+
+<hr>
+
+<h2>🔍 12 CV Evaluation Aspects</h2>
+
+<table>
+  <tr><th>#</th><th>Aspect</th><th>Category</th></tr>
+  <tr><td>1</td><td>Overall Impression</td><td>General</td></tr>
+  <tr><td>2</td><td>Contact Information</td><td>General</td></tr>
+  <tr><td>3</td><td>Consistent &amp; Error-free</td><td>General</td></tr>
+  <tr><td>4</td><td>Relevant Skills</td><td>Competency</td></tr>
+  <tr><td>5</td><td>Professional Summary</td><td>Competency</td></tr>
+  <tr><td>6</td><td>Work Experience</td><td>Competency</td></tr>
+  <tr><td>7</td><td>Achievements</td><td>Competency</td></tr>
+  <tr><td>8</td><td>Education &amp; Certification</td><td>Background</td></tr>
+  <tr><td>9</td><td>Organizational Activity</td><td>Background</td></tr>
+  <tr><td>10</td><td>Additional Sections</td><td>Background</td></tr>
+  <tr><td>11</td><td>Keywords Optimization</td><td>ATS</td></tr>
+  <tr><td>12</td><td>Career Recommendation</td><td>ATS</td></tr>
+</table>
+
+<hr>
+
+<h2>⚡ Impact Language &amp; ATS Format Checks</h2>
+
+<h3>Impact Language</h3>
+<ul>
+  <li>Detects <strong>weak verbs</strong>: "responsible for", "assisted", "helped", "worked on"</li>
+  <li>Detects <strong>buzzwords</strong>: "results-driven", "self-starter", "passionate", "synergy"</li>
+  <li>Checks for <strong>quantified achievements</strong> (%, $, numbers)</li>
+  <li>LLM-powered Impact Score (0–100) with specific actionable tip</li>
+</ul>
+
+<h3>ATS Formatting</h3>
+<ul>
+  <li>🖼️ Image/graphic detection (ATS cannot read images)</li>
+  <li>📄 Page count check (1–2 pages recommended)</li>
+  <li>⚠️ Multi-column layout detection</li>
+  <li>⚠️ Table detection (breaks ATS parsing)</li>
+  <li>✅ Required sections check (Experience, Education, Skills)</li>
+  <li>✅ Contact information check</li>
+</ul>
+
+<hr>
+
+<h2>🧗 Challenges &amp; Learnings</h2>
+
+<table>
+  <tr><th>#</th><th>Challenge</th><th>Solution</th><th>Learning</th></tr>
+  <tr>
+    <td>1</td>
+    <td><strong>Pinecone cold-start latency</strong> — vector ingestion caused noticeable delays with no user feedback</td>
+    <td>Added real-time spinners and status messages during each ingestion step</td>
+    <td>User feedback during processing matters as much as final accuracy</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td><strong>Inconsistent LLM output formatting</strong> — Groq responses often broke the parser</td>
+    <td>Strict prompt engineering with exact labeled output templates (<code>ASPECT:</code>, <code>SCORE:</code>, <code>TIP:</code>)</td>
+    <td>Structured prompts with explicit field names dramatically improve parsing reliability</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td><strong>Image-based PDF parsing failures</strong> — many real CVs use graphics that PyPDF cannot extract</td>
+    <td>Built a dedicated ATS format checker that detects and warns users about image-heavy CVs</td>
+    <td>Detection of bad inputs is as valuable as the scoring itself</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td><strong>Low-match CV force-fitting</strong> — early versions produced dishonest rewrites</td>
+    <td>Dual strategy: tailor CV if score ≥60%, enhance overall quality if &lt;60%</td>
+    <td>AI should be honest with users, not just compliant with their requests</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td><strong>Groq free-tier rate limits</strong> — LLM calls occasionally hit limits mid-analysis</td>
+    <td>Built a complete rule-based fallback engine that activates automatically</td>
+    <td>Every AI feature in a production app needs a reliable non-AI fallback</td>
+  </tr>
+</table>
+
+<hr>
+
+<h2>🔄 Future Roadmap</h2>
+
+<table>
+  <tr><th>Version</th><th>Features</th></tr>
+  <tr><td><strong>V2.0</strong></td><td>Multi-job comparison, full Bahasa Indonesia support</td></tr>
+  <tr><td><strong>V3.0</strong></td><td>Job recommendation engine, CV auto-template generation</td></tr>
+  <tr><td><strong>V4.0</strong></td><td>Analysis history, public web deployment</td></tr>
+  <tr><td><strong>V5.0</strong></td><td>LinkedIn, JobStreet, and job portal integration</td></tr>
+</table>
+
+<hr>
+
+<h2>📁 Project Structure</h2>
+<pre>
+AI-Boot-Camp-batch-11/
+│
+├── ResumeFit AI Bernard L v1.ipynb   # Main Colab notebook — run this first
+├── Backup ResumeFit AI Bernard L v1.ipynb
+├── app.py                             # Streamlit app source code
+├── colab_runner.py                    # Colab launcher script (Cell 2)
+├── requirements.txt                   # Python dependencies
+├── ResumeFit-AI Final.pdf            # Final presentation slides
+├── README.md
+├── screenshots/                       # App screenshots (full walkthrough)
+│   ├── screenshot-1-colab-running.jpg
+│   ├── screenshot-2-landing-page.jpg
+│   ├── screenshot-3-upload-analyze.jpg
+│   ├── screenshot-4-dashboard-score.jpg
+│   ├── screenshot-5-dashboard-breakdown.jpg
+│   ├── screenshot-6-12-aspects.jpg
+│   ├── screenshot-7-ai-rewrite.jpg
+│   ├── screenshot-8-ai-rewrite-output.jpg
+│   ├── screenshot-9-impact-format.jpg
+│   └── screenshot-10-export.jpg
+└── Contoh Resumes/                    # Sample CVs for testing
+    ├── Assistant Marketing Manager Resume.pdf
+    ├── Product Marketing Manager Resume.pdf
+    ├── Sales and Marketing Manager Resume.pdf
+    ├── Job Title_ Senior Backend Software Engineer.docx
+    └── Senior Backend Software Engineer.docx
+</pre>
+
+<hr>
+
+<div class="author-box">
+  <h3>👨‍💻 Bernard Lokasasmita</h3>
+  <p>Final Project — Ruangguru AI Engineering Bootcamp Batch 11</p>
+  <p class="quote">
+    <em>"AI yang baik bukan hanya yang akurat di notebook — tetapi yang bisa memberi nilai nyata kepada pengguna akhir."</em><br>
+    ("Good AI is not just accurate in a notebook — it must deliver real value to end users.")
+  </p>
+</div>
+
+<hr>
+<p style="text-align:center; color:#999; font-size:12px;">MIT License — free to use, modify, and distribute.</p>
+
+</body>
+</html>
