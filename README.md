@@ -9,7 +9,7 @@
 ![Pinecone](https://img.shields.io/badge/Pinecone-Vector%20DB-green)
 ![Groq](https://img.shields.io/badge/Groq-LLM-orange)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/benloImA0G/AI-Boot-Camp-batch-11/blob/main/ResumeFit%20AI%20Bernard%20L%20v1.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1EeoavttYTLHriAmGEL8YgnXIXiMoUKqn)
 
 ---
 
