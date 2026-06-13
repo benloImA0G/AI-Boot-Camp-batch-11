@@ -22,13 +22,13 @@
 - [Overview](#-overview)
 - [Features](#-features)
 - [System Architecture](#-system-architecture)
+- [Vector Embedding Pipeline](#-vector-embedding-pipeline)
 - [Scoring Formula](#-scoring-formula)
 - [Tech Stack](#-tech-stack)
 - [Quick Start](#-quick-start-google-colab)
 - [How to Use](#-how-to-use)
 - [12 CV Evaluation Aspects](#-12-cv-evaluation-aspects)
 - [Impact Language & ATS Format Checks](#-impact-language--ats-format-checks)
-- [Vector Embedding Pipeline](#-vector-embedding-pipeline)
 - [Challenges & Learnings](#-challenges--learnings)
 - [Project Structure](#-project-structure)
 - [Future Roadmap](#-future-roadmap)
@@ -156,6 +156,57 @@ Most job seekers send generic CVs without knowing which keywords are missing, wh
 │  Dashboard │ 12-Aspect │ AI Rewrite │ Format Check │ Export │
 └─────────────────────────────────────────────────────────┘
 ```
+
+---
+
+## 🧬 Vector Embedding Pipeline
+
+ResumeFit AI uses **Pinecone** as its vector database to enable semantic (meaning-based) matching between a CV and a job description — going beyond keyword overlap to understand conceptual similarity.
+
+### How It Works — Step by Step
+
+```
+Job Description Text
+        │
+        ▼
+[ Sentence Transformer Model ]
+  all-MiniLM-L6-v2 (local, free)
+  384-dimensional dense vector
+        │
+        ▼
+[ Pinecone Upsert ]
+  Index: resumefit-index
+  Metric: Cosine Similarity
+  Dimension: 384
+  Store JD as "jd-vector"
+        │
+        ▼
+CV Text → [ Sentence Transformer Model ] → 384-dim vector
+        │
+        ▼
+[ Pinecone Query ]
+  CV vector queried against stored JD vector
+        │
+        ▼
+[ Cosine Similarity Score ]
+  Scaled 0–100% → Pinecone Semantic Score (30% of Final Score)
+```
+
+### Technical Details
+
+| Component | Value |
+|---|---|
+| **Embedding Model** | `sentence-transformers/all-MiniLM-L6-v2` |
+| **Vector Dimensions** | 384 |
+| **Similarity Metric** | Cosine Similarity |
+| **Vector Database** | Pinecone Serverless |
+| **Index Name** | `resumefit-index` |
+| **Input Limit** | First 2,000 characters of each text |
+| **Model Source** | HuggingFace (downloaded once per session, ~80MB) |
+
+### Why Pinecone + Embeddings?
+
+Traditional ATS systems match keywords literally — "managed" won't match "led" even though they mean the same thing. By encoding both the CV and JD into dense vector embeddings, ResumeFit AI captures **semantic meaning**: synonyms, related concepts, and contextual relevance all contribute to the score. Pinecone stores and queries these vectors at scale with sub-second latency.
 
 ---
 
@@ -328,57 +379,6 @@ AI-Boot-Camp-batch-11/
     ├── Job Title_ Senior Backend Software Engineer.docx
     └── Senior Backend Software Engineer.docx
 ```
-
----
-
-## 🧬 Vector Embedding Pipeline
-
-ResumeFit AI uses **Pinecone** as its vector database to enable semantic (meaning-based) matching between a CV and a job description — going beyond keyword overlap to understand conceptual similarity.
-
-### How It Works — Step by Step
-
-```
-Job Description Text
-        │
-        ▼
-[ Sentence Transformer Model ]
-  all-MiniLM-L6-v2 (local, free)
-  384-dimensional dense vector
-        │
-        ▼
-[ Pinecone Upsert ]
-  Index: resumefit-index
-  Metric: Cosine Similarity
-  Dimension: 384
-  Store JD as "jd-vector"
-        │
-        ▼
-CV Text → [ Sentence Transformer Model ] → 384-dim vector
-        │
-        ▼
-[ Pinecone Query ]
-  CV vector queried against stored JD vector
-        │
-        ▼
-[ Cosine Similarity Score ]
-  Scaled 0–100% → Pinecone Semantic Score (30% of Final Score)
-```
-
-### Technical Details
-
-| Component | Value |
-|---|---|
-| **Embedding Model** | `sentence-transformers/all-MiniLM-L6-v2` |
-| **Vector Dimensions** | 384 |
-| **Similarity Metric** | Cosine Similarity |
-| **Vector Database** | Pinecone Serverless |
-| **Index Name** | `resumefit-index` |
-| **Input Limit** | First 2,000 characters of each text |
-| **Model Source** | HuggingFace (downloaded once per session, ~80MB) |
-
-### Why Pinecone + Embeddings?
-
-Traditional ATS systems match keywords literally — "managed" won't match "led" even though they mean the same thing. By encoding both the CV and JD into dense vector embeddings, ResumeFit AI captures **semantic meaning**: synonyms, related concepts, and contextual relevance all contribute to the score. Pinecone stores and queries these vectors at scale with sub-second latency.
 
 ---
 
