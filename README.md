@@ -15,6 +15,7 @@
 
 ## 📋 Table of Contents
 
+- [Screenshots](#-screenshots)
 - [Live Demo](#-live-demo)
 - [Overview](#-overview)
 - [Features](#-features)
@@ -29,6 +30,22 @@
 - [Project Structure](#-project-structure)
 - [Future Roadmap](#-future-roadmap)
 - [Author](#-author)
+
+---
+
+## 📸 Screenshots
+
+### Colab Notebook Running
+![Colab running](screenshots/screenshot-1-colab-running.jpg)
+*App startup in Google Colab — all API keys loaded, ngrok tunnel live*
+
+### Landing Page
+![Landing page](screenshots/screenshot-2-landing-page.jpg)
+*ResumeFit AI v5.0 dashboard — Groq AI ON, Pinecone ACTIVE, ready to analyze*
+
+### Upload CV & Job Description
+![Upload and analyze](screenshots/screenshot-3-upload-analyze.jpg)
+*Step 1: Upload CV PDF and paste job description before running Hybrid AI analysis*
 
 ---
 
@@ -262,6 +279,10 @@ AI-Boot-Camp-batch-11/
 ├── requirements.txt                   # Python dependencies
 ├── ResumeFit-AI Final.pdf            # Final presentation slides
 ├── README.md                          # This file
+├── screenshots/                       # App screenshots
+│   ├── screenshot-1-colab-running.jpg
+│   ├── screenshot-2-landing-page.jpg
+│   └── screenshot-3-upload-analyze.jpg
 └── Contoh Resumes/                    # Sample CVs for testing
     ├── Assistant Marketing Manager Resume.pdf
     ├── Product Marketing Manager Resume.pdf
