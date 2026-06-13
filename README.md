@@ -108,6 +108,17 @@ Final Score = 0.4 × TF-IDF  +  0.3 × Pinecone  +  0.2 × Keywords  +  0.1 × S
 
 > **Score Guide:** 🟢 75–100% Excellent &nbsp;|&nbsp; 🔵 55–75% Good &nbsp;|&nbsp; 🟡 35–55% Moderate &nbsp;|&nbsp; 🔴 0–35% Needs Work
 
+### 🎯 Why These Weights?
+
+The weights were deliberately chosen to **mirror how real-world ATS systems actually work**, not to maximise pure semantic accuracy:
+
+- **TF-IDF at 40%** — Most commercial ATS platforms (Workday, Taleo, Greenhouse) are predominantly keyword-matching engines. Giving TF-IDF the highest weight accurately simulates their behaviour.
+- **TF-IDF + Keyword Coverage = 60% combined** — This reflects the industry reality that ATS screening is still largely keyword-driven. A CV that shares vocabulary with the JD is more likely to pass automated filters.
+- **Pinecone Semantic at 30%** — Adds modern NLP intelligence. Captures meaning and conceptual alignment beyond exact keyword matches — representing the direction ATS is evolving toward.
+- **Skill Match at 10%** — Acts as a focused signal on top of keyword coverage, specifically targeting technical and soft skills that recruiters explicitly filter on.
+
+> This is a deliberate design decision to simulate ATS behaviour accurately, not a limitation. A purely semantic model would score CVs differently from how real ATS systems do.
+
 ---
 
 ## 🏗️ Tech Stack
